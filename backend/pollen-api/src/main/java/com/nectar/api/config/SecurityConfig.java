@@ -40,7 +40,10 @@ public class SecurityConfig {
     @Order(1)
     public SecurityFilterChain publicEndpoints(HttpSecurity http) throws Exception {
         http
-            .securityMatcher("/usuario/login","/test")
+            .securityMatcher("/usuario","/usuario/login","/test",
+                "/v3/api-docs/**",
+                "/swagger-ui/**",
+                "/swagger-ui.html")
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .anyRequest().permitAll()

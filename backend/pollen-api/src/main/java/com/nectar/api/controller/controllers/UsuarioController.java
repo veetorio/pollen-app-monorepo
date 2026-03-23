@@ -20,18 +20,18 @@ import com.nectar.api.controller.out.UsuarioOutput;
 @RequestMapping("/usuario")
 @CrossOrigin("*")
 public class UsuarioController {
+    
     @Autowired
     UsuarioService service;
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_CONTRIBUIDOR')")
+    @PreAuthorize("permitAll()") 
     public void cadastrar(@RequestBody UsuarioInput entity) {
         service.cadastrar(entity);
     }
 
     @PostMapping("/login")
     public UsuarioOutput login(@RequestBody UsuarioLogin entity) {
-        System.out.println("Login request received for email: " + entity.getEmail());
         return service.entrar(entity.getEmail(),entity.getSenha());
     }
     @DeleteMapping
