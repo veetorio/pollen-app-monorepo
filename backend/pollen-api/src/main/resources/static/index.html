@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>ola senhores</h1>
+    <button onclick="aceitar()">aceitar</button>
+    <script>
+        function aceitar() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const link = urlParams.get('link');
+            fetch(`http://localhost:8080/grupos/conectar?link=${link}&idUsuario=2`, {
+                method: 'GET'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Link aceito com sucesso!');
+                    } else {
+                        alert('Erro ao aceitar o link.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao aceitar o link.');
+                });
+        }</script>
+</body>
+
+</html>
