@@ -1,14 +1,21 @@
 package com.nectar.api.controller.out.empresarial;
 
+import lombok.Getter;
+import lombok.Setter;
 import java.util.List;
+import java.util.UUID;
 
-import com.nectar.api.controller.out.ContribuidorOutput;
-import com.nectar.api.domain.models.empresarial.Atividade;
-
+@Getter
+@Setter // Adicionado para permitir que o EquipeMapper popule o DTO
 public class EquipeOutput {
-    private String nome;
-    private String lider;
 
-    private List<ContribuidorOutput> membros;
-    private List<AtividadeOutput> projetos;
+    private String nome;
+
+    private UUID idPublic;
+
+    // Lista de atividades vinculadas a esta equipe
+    private List<AtividadeOutput> atividades;
+
+    // Se você quiser expor os nomes ou UUIDs dos membros no futuro,
+    // a lista viria aqui. Por enquanto, mantemos o foco na estrutura base.
 }
