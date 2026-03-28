@@ -1,15 +1,36 @@
 package com.nectar.api.application.service.mappers;
 
-import java.util.List;
-
-import org.mapstruct.Mapper;
-
+import com.nectar.api.controller.in.EmpresaDtoIn;
 import com.nectar.api.controller.out.empresarial.EmpresaOutput;
 import com.nectar.api.domain.models.empresarial.Empresa;
+import org.springframework.stereotype.Component;
+import java.util.ArrayList;
 
-@Mapper(componentModel = "spring")
-public interface EmpresaMapper {
-    EmpresaOutput empresaToEmpresaOutput(Empresa empresa);
+@Component
+public class EmpresaMapper {
 
-    List<EmpresaOutput> empresasToEmpresasOutput(List<Empresa> empresas);
+    public Empresa toEntity(EmpresaDtoIn dtoIn) {
+        if (dtoIn == null) return null;
+
+        Empresa empresa = new Empresa();
+
+        empresa.setNome(dtoIn.getNome());
+        empresa.setCnpj(dtoIn.getCnpj());
+
+        return empresa;
+    }
+
+    public EmpresaOutput toOutput(Empresa empresa) {
+        if (empresa == null) return null;
+
+        EmpresaOutput out = new EmpresaOutput();
+
+        out.setNome(empresa.getNome());
+
+        out.setCnpj(String.valueOf(empresa.getCnpj()));
+
+        out.setDepartamentos(new ArrayList<>());
+
+        return out;
+    }
 }

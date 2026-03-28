@@ -1,22 +1,22 @@
 package com.nectar.api.controller.controllers;
 
-import com.nectar.api.application.service.EmpresaService;
-import com.nectar.api.controller.in.EmpresaDtoIn;
-import com.nectar.api.controller.out.empresarial.EmpresaOutput;
+import com.nectar.api.application.service.AtividadeService;
+import com.nectar.api.controller.in.AtividadeDtoIn;
+import com.nectar.api.controller.out.empresarial.AtividadeOutput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/empresas")
+@RequestMapping("/atividades")
 @RequiredArgsConstructor
-public class EmpresaController {
+public class AtividadeController {
 
-    private final EmpresaService service;
+    private final AtividadeService service;
 
     @PostMapping
-    public ResponseEntity<EmpresaOutput> salvar(@RequestBody EmpresaDtoIn dtoIn) {
+    public ResponseEntity<AtividadeOutput> salvar(@RequestBody AtividadeDtoIn dtoIn) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(dtoIn));
     }
 }
