@@ -1,15 +1,16 @@
 package com.nectar.api.application.service.mappers;
 
-import java.util.List;
+import com.nectar.api.controller.in.EmpresaDtoIn;
+import com.nectar.api.controller.out.empresarial.EmpresaOutput;
+import com.nectar.api.controller.out.workspace.AnotacaoOutput;
+import com.nectar.api.domain.models.empresarial.Empresa;
 
 import org.mapstruct.Mapper;
 
-import com.nectar.api.controller.out.empresarial.EmpresaOutput;
-import com.nectar.api.domain.models.empresarial.Empresa;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = {AnotacaoMapper.class,UsuarioMapper.class})
 public interface EmpresaMapper {
-    EmpresaOutput empresaToEmpresaOutput(Empresa empresa);
+  public Empresa toEntity(EmpresaDtoIn dtoIn);
 
-    List<EmpresaOutput> empresasToEmpresasOutput(List<Empresa> empresas);
+    public EmpresaOutput toOutput(Empresa empresa);
 }

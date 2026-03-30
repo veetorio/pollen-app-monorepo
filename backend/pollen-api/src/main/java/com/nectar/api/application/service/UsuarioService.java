@@ -5,10 +5,8 @@
 package com.nectar.api.application.service;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.Optional;
 
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Service;
 import com.nectar.api.application.repositorys.UsuarioRepository;
 import com.nectar.api.application.service.mappers.UsuarioMapper;
 import com.nectar.api.controller.in.UsuarioInput;
-import com.nectar.api.controller.out.ContribuidorOutput;
 import com.nectar.api.controller.out.TokenOutput;
 import com.nectar.api.controller.out.UsuarioOutput;
 import com.nectar.api.domain.models.Usuario;

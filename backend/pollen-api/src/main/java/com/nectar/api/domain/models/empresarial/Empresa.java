@@ -32,7 +32,7 @@ public class Empresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private long idPrivate;
+	private Long idPrivate;
 
     @UuidGenerator
 	private UUID idPublic;

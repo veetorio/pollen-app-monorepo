@@ -1,8 +1,12 @@
 package com.nectar.api.domain.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Favo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
@@ -14,29 +18,5 @@ public class Favo {
     private String descricao;
     @ManyToOne
     private Colmeia colmeiaPai;
-    public Integer getIdFavo() {
-        return idFavo;
-    }
-    public void setIdFavo(Integer idFavo) {
-        this.idFavo = idFavo;
-    }
-    public String getTitulo() {
-        return titulo;
-    }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-    public Colmeia getColmeiaPai() {
-        return colmeiaPai;
-    }
-    public void setColmeiaPai(Colmeia colmeiaPai) {
-        this.colmeiaPai = colmeiaPai;
-    }
-    
+
 }

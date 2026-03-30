@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.hibernate.annotations.UuidGenerator;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,11 +28,12 @@ public class Atividade {
     private Equipe equipe;
 
     @Size(min = 0 , max = 5)
+    @ElementCollection
 	private List<String> anexos;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private long idPrivate;
+	private Long idPrivate;
 
     @UuidGenerator
 	private UUID idPublic;
