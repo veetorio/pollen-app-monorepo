@@ -143,6 +143,34 @@ public class UsuarioService {
 
     }
 
+    public void atualizar(UsuarioInput usuario) {
+        Optional<Usuario> usuarioOptional = this.repository.findById(usuario.getIdPublic());
+
+        if (usuarioOptional.isEmpty()) {
+            throw new RuntimeException("Usuário não encontrado, não foi possível atualizar.");
+        }
+
+        Usuario usuarioParaAtualizar = usuarioOptional.get();
+
+        if (usuario.getNome() != null && !usuario.getNome().isBlank()) {
+            usuarioParaAtualizar.setNome(usuario.getNome());
+        }
+
+        if (usuario.getEmail() != null && !usuario.getEmail().isBlank()) {
+            usuarioParaAtualizar.setEmail(usuario.getEmail());
+        }
+
+        if (usuario.getSenha() != null && !usuario.getSenha().isBlank()) {
+            usuarioParaAtualizar.setSenha(usuario.getSenha());
+        }
+
+        // data da atualização
+        usuarioParaAtualizar.setDataAtualizacao(Instant.now());
+
+        // salva o estado do usuario no banco
+        this.repository.save(usuarioParaAtualizar);
+    }
+
     public void criarAnotacao(Anotacao anotacao){
 
     }

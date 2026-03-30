@@ -34,4 +34,9 @@ public class TarefaController {
     public void deletar(@RequestParam Integer id) {
         service.deletar(id);
     }
+
+    @GetMapping
+    public List<TarefaOutput> listar() {
+        return null;
+    }
 }

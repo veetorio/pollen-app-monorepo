@@ -47,4 +47,9 @@ public class FavoController {
         this.service.deletar(id.longValue());
     }
 
+    @PutMapping("/{id}")
+    public void atualizar(@PathVariable Integer id, @RequestBody FavoDtoIn dados) {
+        // método vazio
+    }
+
 }

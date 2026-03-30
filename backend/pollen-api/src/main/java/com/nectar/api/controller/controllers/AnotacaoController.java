@@ -23,19 +23,20 @@ public class AnotacaoController {
         service.criar(dados);
     }
 
-    //@GetMapping
-    //public List<AnotacaoOutput> listar(@RequestParam Integer idUsuario) {
-    //   return this.service.listarPorUsuario(idUsuario);
-    //}
 
-    @PatchMapping("/lixeira/{id}")
-    public void moverParaLixeira(@PathVariable Integer id) {
-        this.service.moverParaLixeira(id);
+    @GetMapping
+    public List<AnotacaoOutput> listar() {
+        return null;
     }
 
     @PutMapping("/{id}")
-    public void atualizarAnotacao(@PathVariable Integer id, @RequestBody AnotacaoDtoIn dados) {
-        this.service.atualizarAnotacao(id, dados);
+    public void atualizar(@PathVariable Integer id, @RequestBody AnotacaoDtoIn dados) {
+        // método vazio
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Integer id) {
+        // método vazio
     }
 
 }

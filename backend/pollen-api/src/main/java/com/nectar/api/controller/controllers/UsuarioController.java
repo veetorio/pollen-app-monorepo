@@ -30,6 +30,12 @@ public class UsuarioController {
         service.cadastrar(entity);
     }
 
+    @PostMapping
+    @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_CONTRIBUIDOR')") 
+    public void atualizar(@RequestBody UsuarioInput entity) {
+        service.atualizar(entity);
+    }
+
     @PostMapping("/login")
     public UsuarioOutput login(@RequestBody UsuarioLogin entity) {
         return service.entrar(entity.getEmail(),entity.getSenha());

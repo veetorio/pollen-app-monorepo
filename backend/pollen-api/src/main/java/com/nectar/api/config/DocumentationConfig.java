@@ -2,7 +2,11 @@ package com.nectar.api.config;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
+
 import org.springframework.context.annotation.Configuration;
+
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 
 @Configuration
 @OpenAPIDefinition(
@@ -14,7 +18,14 @@ import org.springframework.context.annotation.Configuration;
                         name = "Ettore Vitorio",
                         email = "contato@exemplo.com"
                 )
+        
         )
 )
-public class Documentation {
+@SecurityScheme(
+        name = "bearerAuth",
+        type = SecuritySchemeType.HTTP,
+        scheme = "bearer",
+        bearerFormat = "JWT"
+)
+public class DocumentationConfig {
 }
