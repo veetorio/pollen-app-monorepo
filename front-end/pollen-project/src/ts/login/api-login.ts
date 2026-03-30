@@ -85,7 +85,8 @@ if (form) {
       }
     } catch (erro) {
       console.error('❌ Erro de conexão:', erro);
-      mensagemDiv.textContent = 'Erro ao conectar com o servidor: ' + erro.message;
+      const mensagemErroConexao = erro instanceof Error ? erro.message : 'Erro desconhecido';
+      mensagemDiv.textContent = 'Erro ao conectar com o servidor: ' + mensagemErroConexao;
       mensagemDiv.className = 'login-mensagem login-mensagem-erro';
     }
   });

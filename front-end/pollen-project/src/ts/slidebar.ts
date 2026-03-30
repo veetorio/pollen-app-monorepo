@@ -3,19 +3,22 @@ const sidebar = document.getElementById('sidebar');
 const toggleBtn = document.getElementById('toggleBtn');
 const mainContent = document.getElementById('mainContent');
 
-toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-    
-    // Salva o estado no localStorage
-    if (sidebar.classList.contains('collapsed')) {
-        localStorage.setItem('sidebarCollapsed', 'true');
-    } else {
-        localStorage.setItem('sidebarCollapsed', 'false');
-    }
-});
+if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        
+        // Salva o estado no localStorage
+        if (sidebar.classList.contains('collapsed')) {
+            localStorage.setItem('sidebarCollapsed', 'true');
+        } else {
+            localStorage.setItem('sidebarCollapsed', 'false');
+        }
+    });
+}
 
 // Restaura o estado do sidebar ao carregar a página
 window.addEventListener('DOMContentLoaded', () => {
+    if (!sidebar) return;
     const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
     if (isCollapsed) {
         sidebar.classList.add('collapsed');
@@ -25,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
     try {
         const currentFile = window.location.pathname.split('/').pop();
         // Procura um nav-item cujo href corresponda ao arquivo atual
-        let matched = null;
+        let matched: Element | null = null;
         document.querySelectorAll('.nav-item').forEach(nav => {
             const href = nav.getAttribute('href');
             if (!href) return;
@@ -38,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (matched) {
             // remove active de outros e aplica no encontrado
             document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-            matched.classList.add('active');
+            (matched as Element).classList.add('active');
         }
     } catch (err) {
         // silencioso: se algo falhar, não quebrou a sidebar
@@ -48,7 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Adiciona interatividade aos itens do menu
 document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', function(e) {
+    item.addEventListener('click', function(this: Element, e: Event) {
         // Remove active de todos os itens
         document.querySelectorAll('.nav-item').forEach(nav => {
             nav.classList.remove('active');
@@ -73,7 +76,7 @@ document.querySelectorAll('.nav-item').forEach(item => {
 // Adiciona efeito de hover nos itens do menu
 document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('mouseenter', function() {
-        if (sidebar.classList.contains('collapsed')) {
+        if (sidebar && sidebar.classList.contains('collapsed')) {
             // Pode adicionar tooltip aqui quando colapsado
         }
     });
