@@ -10,6 +10,5 @@ import java.util.UUID;
 public class AtividadeDtoIn {
     private String head;
     private String content;
-    private List<String> anexos;
     private UUID equipeIdPublic; // UUID da equipe dona da atividade
 }

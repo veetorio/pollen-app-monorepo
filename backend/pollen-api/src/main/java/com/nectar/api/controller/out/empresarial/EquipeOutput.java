@@ -5,8 +5,10 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
+import com.nectar.api.controller.out.ContribuidorEquipeOutPut;
+
 @Getter
-@Setter // Adicionado para permitir que o EquipeMapper popule o DTO
+@Setter 
 public class EquipeOutput {
 
     private String nome;
@@ -16,6 +18,7 @@ public class EquipeOutput {
     // Lista de atividades vinculadas a esta equipe
     private List<AtividadeOutput> atividades;
 
-    // Se você quiser expor os nomes ou UUIDs dos membros no futuro,
-    // a lista viria aqui. Por enquanto, mantemos o foco na estrutura base.
+    private List<ContribuidorEquipeOutPut> contribuidores;
+
+
 }

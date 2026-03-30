@@ -31,7 +31,7 @@ public class Departamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private long idPrivate;
+	private Long idPrivate;
 
     @UuidGenerator
 	private UUID idPublic;

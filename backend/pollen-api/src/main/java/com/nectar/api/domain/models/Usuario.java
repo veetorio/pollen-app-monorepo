@@ -33,7 +33,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_private")
-    private Integer idPrivate;
+    private Long idPrivate;
 
     @UuidGenerator
     private UUID idPublic;
