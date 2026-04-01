@@ -28,4 +28,23 @@ public class DepartamentoService {
         departamento.setEmpresa(empresa);
         return mapper.toOutput(repository.save(departamento));
     }
+
+    public void deletar(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Departamento não encontrado para exclusão.");
+        }
+        repository.deleteById(id);
+    }
+
+    public DepartamentoOutput atualizar(Long id, DepartamentoDtoIn dtoIn) {
+        Departamento departamento = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Departamento não encontrado para atualização."));
+
+        if (dtoIn.getNome() != null && !dtoIn.getNome().isBlank()) {
+            departamento.setNome(dtoIn.getNome());
+        }
+        // Adicione outros campos conforme necessário
+
+        return mapper.toOutput(repository.save(departamento));
+    }
 }

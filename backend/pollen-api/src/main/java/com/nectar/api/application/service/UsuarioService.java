@@ -6,6 +6,7 @@ package com.nectar.api.application.service;
 
 import java.time.Instant;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
@@ -113,8 +114,8 @@ public class UsuarioService {
         return usuarioOutput;
     }
 
-    public void excluirContaPermanentemente(Integer idUsuario) {
-        Optional<Usuario> usuario = this.repository.findById(idUsuario);
+    public void excluirContaPermanentemente(UUID idUsuario) {
+        Optional<Usuario> usuario = this.repository.findByIdPublic(idUsuario);
 
         if (usuario.isEmpty()) {
             throw new RuntimeException("Usuário não encontrado, não foi possível excluir.");
@@ -125,8 +126,8 @@ public class UsuarioService {
         this.repository.delete(usuarioParaExcluir);
     }
 
-    public void desativarConta(Integer idUsuario) {
-        Optional<Usuario> usuario = this.repository.findById(idUsuario);
+    public void desativarConta(UUID idUsuario) {
+        Optional<Usuario> usuario = this.repository.findByIdPublic(idUsuario);
 
         if (usuario.isEmpty()) {
             throw new RuntimeException("Usuário não encontrado, não foi possível desativar.");
@@ -144,7 +145,7 @@ public class UsuarioService {
     }
 
     public void atualizar(UsuarioInput usuario) {
-        Optional<Usuario> usuarioOptional = this.repository.findById(usuario.getIdPublic());
+        Optional<Usuario> usuarioOptional = this.repository.findByIdPublic(usuario.getIdPublic());
 
         if (usuarioOptional.isEmpty()) {
             throw new RuntimeException("Usuário não encontrado, não foi possível atualizar.");

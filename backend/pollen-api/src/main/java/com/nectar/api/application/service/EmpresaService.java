@@ -27,4 +27,23 @@ public class EmpresaService {
         empresa.setManager(manager);
         return mapper.toOutput(repository.save(empresa));
     }
+
+    public void deletar(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Empresa não encontrada para exclusão.");
+        }
+        repository.deleteById(id);
+    }
+
+    public EmpresaOutput atualizar(Long id, EmpresaDtoIn dtoIn) {
+        Empresa empresa = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Empresa não encontrada para atualização."));
+
+        if (dtoIn.getNome() != null && !dtoIn.getNome().isBlank()) {
+            empresa.setNome(dtoIn.getNome());
+        }
+        // Adicione outros campos conforme necessário
+
+        return mapper.toOutput(repository.save(empresa));
+    }
 }

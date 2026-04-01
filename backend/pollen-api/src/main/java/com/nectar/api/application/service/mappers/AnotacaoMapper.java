@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import com.nectar.api.controller.out.workspace.AnotacaoOutput;
 import com.nectar.api.domain.models.anotacoes.Anotacao;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = {AnotacaoMapper.class})
 public interface AnotacaoMapper {
     AnotacaoOutput anotacaoToOutput(Anotacao workspace);
 

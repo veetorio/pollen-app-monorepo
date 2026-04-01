@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import com.nectar.api.controller.out.workspace.ColmeiaOutput;
 import com.nectar.api.domain.models.Colmeia;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = {AnotacaoMapper.class})
 public interface ColmeiaMapper {
     ColmeiaOutput ColmeiaToColmeiaOutput(Colmeia Colmeia);
 

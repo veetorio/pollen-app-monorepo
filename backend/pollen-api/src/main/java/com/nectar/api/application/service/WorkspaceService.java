@@ -38,6 +38,25 @@ public class WorkspaceService {
 
         return null;
     }
+
+    public void deletar(Long id) {
+        if (!workspaceRepository.existsById(id)) {
+            throw new RuntimeException("Workspace não encontrada para exclusão.");
+        }
+        workspaceRepository.deleteById(id);
+    }
+
+    public Workspace atualizar(Long id, String nome) {
+        Workspace workspace = workspaceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Workspace não encontrada para atualização."));
+
+        if (nome != null && !nome.isBlank()) {
+            workspace.setNome(nome);
+        }
+        // Adicione outros campos conforme necessário
+
+        return workspaceRepository.save(workspace);
+    }
         
     
 }

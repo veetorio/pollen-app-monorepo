@@ -41,6 +41,25 @@ public class AtividadeService {
         return mapper.toOutput(repository.save(atividade));
     }
 
+    public void deletar(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Atividade não encontrada para exclusão.");
+        }
+        repository.deleteById(id);
+    }
+
+    public AtividadeOutput atualizar(Long id, AtividadeDtoIn dtoIn) {
+        Atividade atividade = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Atividade não encontrada para atualização."));
+
+        if (dtoIn.getHead() != null && !dtoIn.getHead().isBlank()) {
+            atividade.setHead(dtoIn.getHead());
+        }
+        // Adicione outros campos conforme necessário
+
+        return mapper.toOutput(repository.save(atividade));
+    }
+
     public Void salvarAnexo(MultipartFile file, AnexoInput input) {
         int size = equipeRepository
             .findByIdPublic(repository.findByIdPublic(input.getIdAtividade())

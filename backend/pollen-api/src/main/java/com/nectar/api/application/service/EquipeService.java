@@ -42,4 +42,23 @@ public class EquipeService {
 
         return mapper.toOutput(repository.save(equipe));
     }
+
+        public void deletar(Long id) {
+                if (!repository.existsById(id)) {
+                        throw new RuntimeException("Equipe não encontrada para exclusão.");
+                }
+                repository.deleteById(id);
+        }
+
+        public EquipeOutput atualizar(Long id, EquipeDtoIn dtoIn) {
+                Equipe equipe = repository.findById(id)
+                                .orElseThrow(() -> new RuntimeException("Equipe não encontrada para atualização."));
+
+                if (dtoIn.getNome() != null && !dtoIn.getNome().isBlank()) {
+                        equipe.setNome(dtoIn.getNome());
+                }
+                // Adicione outros campos conforme necessário
+
+                return mapper.toOutput(repository.save(equipe));
+        }
 }

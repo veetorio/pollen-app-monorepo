@@ -1,5 +1,7 @@
 package com.nectar.api.controller.controllers;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,13 +44,13 @@ public class UsuarioController {
     }
     @DeleteMapping
     @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_CONTRIBUIDOR')")
-    public void deleteFisico(@RequestParam Integer param) {
+    public void deleteFisico(@RequestParam UUID param) {
         service.excluirContaPermanentemente(param);
     }
 
     @DeleteMapping("/desativar")
     @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_CONTRIBUIDOR')")
-    public void deleteLogico(@RequestParam Integer param){
+    public void deleteLogico(@RequestParam UUID param){
         service.desativarConta(param);
     } 
 

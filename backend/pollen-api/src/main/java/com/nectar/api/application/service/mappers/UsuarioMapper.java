@@ -11,7 +11,7 @@ import com.nectar.api.controller.out.ContribuidorOutput;
 import com.nectar.api.controller.out.empresarial.AdminOutput;
 import com.nectar.api.domain.models.Usuario;
 
-@Mapper(componentModel = "spring", uses = { EmpresaMapper.class, WorkspaceMapper.class })
+@Mapper(componentModel = "spring", uses = { EmpresaMapper.class, WorkspaceMapper.class  , DepartamentoMapper.class})
 public interface UsuarioMapper {
 
     @Named("usuarioInContribuidor")

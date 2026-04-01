@@ -7,7 +7,7 @@ import com.nectar.api.domain.models.empresarial.Atividade;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = {AnotacaoMapper.class})
 public interface AtividadeMapper {
 
     @Mapping(target = "anexos",ignore = true)
