@@ -43,7 +43,8 @@ if (formCadastro) {
     try {
       console.log('🔵 Enviando POST para /usuario:', { nome, email, senha });
 
-      const resposta = await fetch('localhost:8080/usuario', {
+      const baseUrl = 'http://localhost:8080';
+      const resposta = await fetch(`${baseUrl}/usuario`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
